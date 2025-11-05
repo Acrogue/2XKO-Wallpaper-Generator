@@ -2,24 +2,30 @@
     const sampleBorder = `Runeterra/Overlay.png`
 
     // Champions
-    const Ahri = `Champions/Ahri.png`
-    const Blitz = `Champions/Blitz.png`
-    const Braum = `Champions/Braum.png`
-    const Darius = `Champions/Darius.png`
-    const Ekko = `Champions/Ekko.png`
-    const Illaoi = `Champions/Illaoi.png`
-    const Jinx = `Champions/Jinx.png`
-    const Vi = `Champions/Vi.png`
-    const Yasuo = `Champions/Yasuo.png`
+    const champions = {
+        Ahri: `Champions/Ahri.png`,
+        Blitz: `Champions/Blitz.png`,
+        Braum: `Champions/Braum.png`,
+        Darius: `Champions/Darius.png`,
+        Ekko: `Champions/Ekko.png`,
+        Illaoi: `Champions/Illaoi.png`,
+        Jinx: `Champions/Jinx.png`,
+        Vi: `Champions/Vi.png`,
+        Yasuo: `Champions/Yasuo.png`,
+    }
 
-    //Backgrounds
-    const Bandle = `Runeterra/Bandle.png`
-    const Bilgewater = `Runeterra/Bilgewater.png`
-    const Jonia = `Runeterra/Jonia.png`
-    const Noxus = `Runeterra/Noxus.png`
-    const Piltover = `Runeterra/Piltover.png`
-    const SerpentIsles = `Runeterra/SerpentIsles.png`
-    const Zaun = `Runeterra/Zaun.png`
+    // Backgrounds
+    const backgrounds = {
+        Bandle: `Runeterra/Bandle.png`,
+        Bilgewater: `Runeterra/Bilgewater.png`,
+        Jonia: `Runeterra/Jonia.png`,
+        Noxus: `Runeterra/Noxus.png`,
+        Piltover: `Runeterra/Piltover.png`,
+        SerpentIsles: `Runeterra/SerpentIsles.png`,
+        Zaun: `Runeterra/Zaun.png`
+    }
+
+
 
 
     // Elements
@@ -58,20 +64,18 @@
     let borderImage = null;
     let leftBg = null, rightBg = null;
     let leftLogo = null, rightLogo = null;
-    //const leftState = { x: canvas.width*0.25, y: canvas.height/2, scale:1, rot:0, opacity:1 };
-    //const rightState = { x: canvas.width*0.75, y: canvas.height/2, scale:1, rot:0, opacity:1 };
     const leftState = { x: 122, y: 535, scale: 0.87, rot: 0, opacity: 1 };
     const rightState = { x: canvas.width * 0.75, y: canvas.height / 2, scale: 1, rot: 0, opacity: 1 };
     let activeDrag = null; // 'left' or 'right' or null
     let dragging = false, dragStart = null;
 
-    function makeThumb(src, container, onClick) {
+    function makeThumb(src,alt, container, onClick) {
       const div = document.createElement('div'); 
       div.className = 'thumb';
       const img = document.createElement('img'); 
       
       img.src = src; 
-      img.alt = img.getAttribute('src').split('/')[1].split('.')[0];
+      img.alt = alt
       div.appendChild(img);
       div.addEventListener('click', () => { [...container.children].forEach(c => c.classList.remove('selected')); div.classList.add('selected'); onClick(src); });
       container.appendChild(div);
@@ -79,46 +83,19 @@
 
     // add presets
     //Overlay
-    makeThumb(sampleBorder, borderPresets, (s) => loadBorderFromSrc(s));
+    makeThumb(sampleBorder,null, borderPresets, (s) => loadBorderFromSrc(s));
 
     //Champions
-    makeThumb(Ahri, logoLeftPresets, (s) => loadLeftLogoFromSrc(s));
-    makeThumb(Blitz, logoLeftPresets, (s) => loadLeftLogoFromSrc(s));
-    makeThumb(Braum, logoLeftPresets, (s) => loadLeftLogoFromSrc(s));
-    makeThumb(Darius, logoLeftPresets, (s) => loadLeftLogoFromSrc(s));
-    makeThumb(Ekko, logoLeftPresets, (s) => loadLeftLogoFromSrc(s));
-    makeThumb(Illaoi, logoLeftPresets, (s) => loadLeftLogoFromSrc(s));
-    makeThumb(Jinx, logoLeftPresets, (s) => loadLeftLogoFromSrc(s));
-    makeThumb(Vi, logoLeftPresets, (s) => loadLeftLogoFromSrc(s));
-    makeThumb(Yasuo, logoLeftPresets, (s) => loadLeftLogoFromSrc(s));
-
-    makeThumb(Ahri, logoRightPresets, (s) => loadRightLogoFromSrc(s));
-    makeThumb(Blitz, logoRightPresets, (s) => loadRightLogoFromSrc(s));
-    makeThumb(Braum, logoRightPresets, (s) => loadRightLogoFromSrc(s));
-    makeThumb(Darius, logoRightPresets, (s) => loadRightLogoFromSrc(s));
-    makeThumb(Ekko, logoRightPresets, (s) => loadRightLogoFromSrc(s));
-    makeThumb(Illaoi, logoRightPresets, (s) => loadRightLogoFromSrc(s));
-    makeThumb(Jinx, logoRightPresets, (s) => loadRightLogoFromSrc(s));
-    makeThumb(Vi, logoRightPresets, (s) => loadRightLogoFromSrc(s));
-    makeThumb(Yasuo, logoRightPresets, (s) => loadRightLogoFromSrc(s));
+    for (const champion in champions) {
+        makeThumb(champions[champion],champion, logoLeftPresets, (s) => loadLeftLogoFromSrc(s));
+        makeThumb(champions[champion],champion, logoRightPresets, (s) => loadRightLogoFromSrc(s));
+    }
 
     //Backgrounds
-    makeThumb(Bandle, bgLeftPresets, (s) => loadLeftBgFromSrc(s));
-    makeThumb(Bilgewater, bgLeftPresets, (s) => loadLeftBgFromSrc(s));
-    makeThumb(Jonia, bgLeftPresets, (s) => loadLeftBgFromSrc(s));
-    makeThumb(Noxus, bgLeftPresets, (s) => loadLeftBgFromSrc(s));
-    makeThumb(Piltover, bgLeftPresets, (s) => loadLeftBgFromSrc(s));
-    makeThumb(SerpentIsles, bgLeftPresets, (s) => loadLeftBgFromSrc(s));
-    makeThumb(Zaun, bgLeftPresets, (s) => loadLeftBgFromSrc(s));
-
-
-    makeThumb(Bandle, bgRightPresets, (s) => loadRightBgFromSrc(s));
-    makeThumb(Bilgewater, bgRightPresets, (s) => loadRightBgFromSrc(s));
-    makeThumb(Jonia, bgRightPresets, (s) => loadRightBgFromSrc(s));
-    makeThumb(Noxus, bgRightPresets, (s) => loadRightBgFromSrc(s));
-    makeThumb(Piltover, bgRightPresets, (s) => loadRightBgFromSrc(s));
-    makeThumb(SerpentIsles, bgRightPresets, (s) => loadRightBgFromSrc(s));
-    makeThumb(Zaun, bgRightPresets, (s) => loadRightBgFromSrc(s));
+    for (const background in backgrounds) {
+        makeThumb(backgrounds[background],background, bgLeftPresets, (s) => loadLeftBgFromSrc(s));
+        makeThumb(backgrounds[background],background, bgRightPresets, (s) => loadRightBgFromSrc(s));
+    }
 
 
 
@@ -202,4 +179,4 @@
     function updateInfo() { const parts = []; parts.push(`Canvas: ${canvas.width}×${canvas.height}`); parts.push(`Left BG: ${leftBg ? leftBg.width + '×' + leftBg.height : 'ninguno'}`); parts.push(`Right BG: ${rightBg ? rightBg.width + '×' + rightBg.height : 'ninguno'}`); parts.push(`Left logo: ${leftLogo ? leftLogo.width + '×' + leftLogo.height : 'ninguno'}`); parts.push(`Right logo: ${rightLogo ? rightLogo.width + '×' + rightLogo.height : 'ninguno'}`); info.innerText = parts.join('\n'); }
 
     // init defaults
-    (function () { borderPresets.children[0].classList.add('selected'); bgLeftPresets.children[2].classList.add('selected'); bgRightPresets.children[6].classList.add('selected'); logoLeftPresets.children[0].classList.add('selected'); logoRightPresets.children[4].classList.add('selected'); loadBorderFromSrc(sampleBorder); loadLeftBgFromSrc(Jonia); loadRightBgFromSrc(Zaun); loadLeftLogoFromSrc(Ahri); loadRightLogoFromSrc(Ekko); })();
+    (function () { borderPresets.children[0].classList.add('selected'); bgLeftPresets.children[2].classList.add('selected'); bgRightPresets.children[6].classList.add('selected'); logoLeftPresets.children[0].classList.add('selected'); logoRightPresets.children[4].classList.add('selected'); loadBorderFromSrc(sampleBorder); loadLeftBgFromSrc(backgrounds["Jonia"]); loadRightBgFromSrc(backgrounds["Zaun"]); loadLeftLogoFromSrc(champions["Ahri"]); loadRightLogoFromSrc(champions["Ekko"]); })();
