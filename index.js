@@ -27,32 +27,23 @@
 
 
 
-
     // Elements
-    const borderFile = document.getElementById('borderFile');
     const borderPresets = document.getElementById('borderPresets');
 
     const bgLeftPresets = document.getElementById('bgLeftPresets');
     const logoLeftPresets = document.getElementById('logoLeftPresets');
-    const bgLeftFile = document.getElementById('bgLeftFile');
-    const logoLeftFile = document.getElementById('logoLeftFile');
     const leftOpacity = document.getElementById('leftOpacity');
     const leftOpacityVal = document.getElementById('leftOpacityVal');
     const leftScale = document.getElementById('leftScale');
     const leftScaleVal = document.getElementById('leftScaleVal');
-    const leftRotation = document.getElementById('leftRotation');
-    const leftRotationVal = document.getElementById('leftRotationVal');
 
     const bgRightPresets = document.getElementById('bgRightPresets');
     const logoRightPresets = document.getElementById('logoRightPresets');
-    const bgRightFile = document.getElementById('bgRightFile');
-    const logoRightFile = document.getElementById('logoRightFile');
     const rightOpacity = document.getElementById('rightOpacity');
     const rightOpacityVal = document.getElementById('rightOpacityVal');
     const rightScale = document.getElementById('rightScale');
     const rightScaleVal = document.getElementById('rightScaleVal');
-    const rightRotation = document.getElementById('rightRotation');
-    const rightRotationVal = document.getElementById('rightRotationVal');
+
 
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
@@ -111,22 +102,14 @@
     function loadLeftLogoFromSrc(src) { const img = new Image(); img.crossOrigin = 'anonymous'; img.onload = () => { leftLogo = img; leftState.x = 122; leftState.y = 543; leftState.scale = 0.87; leftState.rot = 0; leftState.opacity = 1; render(); updateInfo(); }; img.src = src; }
     function loadRightLogoFromSrc(src) { const img = new Image(); img.crossOrigin = 'anonymous'; img.onload = () => { rightLogo = img; rightState.x = 1000; rightState.y = 543; rightState.scale = 0.87; rightState.rot = 0; rightState.opacity = 1; render(); updateInfo(); }; img.src = src; }
 
-    // file inputs
-    borderFile.addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; loadImageFromFile(f, img => { borderImage = img; render(); updateInfo(); }); });
-    bgLeftFile.addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; loadImageFromFile(f, img => { leftBg = img; render(); updateInfo(); }); });
-    logoLeftFile.addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; loadImageFromFile(f, img => { leftLogo = img; leftState.x = canvas.width * 0.25; leftState.y = canvas.height / 2; render(); updateInfo(); }); });
-    bgRightFile.addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; loadImageFromFile(f, img => { rightBg = img; render(); updateInfo(); }); });
-    logoRightFile.addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; loadImageFromFile(f, img => { rightLogo = img; rightState.x = canvas.width * 0.75; rightState.y = canvas.height / 2; render(); updateInfo(); }); });
 
     // controls events
     leftOpacity.addEventListener('input', () => { leftOpacityVal.textContent = leftOpacity.value + '%'; leftState.opacity = leftOpacity.value / 100; render(); });
     leftScale.addEventListener('input', () => { leftScaleVal.textContent = leftScale.value + '%'; leftState.scale = leftScale.value / 100; render(); });
-    leftRotation.addEventListener('input', () => { leftRotationVal.textContent = leftRotation.value + '°'; leftState.rot = leftRotation.value * Math.PI / 180; render(); });
     rightOpacity.addEventListener('input', () => { rightOpacityVal.textContent = rightOpacity.value + '%'; rightState.opacity = rightOpacity.value / 100; render(); });
     rightScale.addEventListener('input', () => { rightScaleVal.textContent = rightScale.value + '%'; rightState.scale = rightScale.value / 100; render(); });
-    rightRotation.addEventListener('input', () => { rightRotationVal.textContent = rightRotation.value + '°'; rightState.rot = rightRotation.value * Math.PI / 180; render(); });
 
-    resetBtn.addEventListener('click', () => { leftState.x = canvas.width * 0.25; leftState.y = canvas.height / 2; leftState.scale = 1; leftState.rot = 0; leftState.opacity = 1; rightState.x = canvas.width * 0.75; rightState.y = canvas.height / 2; rightState.scale = 1; rightState.rot = 0; rightState.opacity = 1; leftOpacity.value = 100; leftOpacityVal.textContent = '100%'; leftScale.value = 87; leftScaleVal.textContent = '100%'; leftRotation.value = 0; leftRotationVal.textContent = '0°'; rightOpacity.value = 100; rightOpacityVal.textContent = '100%'; rightScale.value = 87; rightScaleVal.textContent = '100%'; rightRotation.value = 0; rightRotationVal.textContent = '0°'; render(); });
+    resetBtn.addEventListener('click', () => { leftState.x = 122; leftState.y = 535; leftState.scale = 0.87; leftState.rot = 0; leftState.opacity = 1; rightState.x = 1000; rightState.y = 543; rightState.scale = 0.87; rightState.rot = 0; rightState.opacity = 1; leftOpacity.value = 100; leftOpacityVal.textContent = '100%'; leftScale.value = 87; leftScaleVal.textContent = '87%'; rightOpacity.value = 100; rightOpacityVal.textContent = '100%'; rightScale.value = 87; rightScaleVal.textContent = '87%'; render(); });
 
     downloadBtn.addEventListener('click', () => {
 

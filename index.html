@@ -16,7 +16,6 @@
       <div class="controls">
         <label>
           Choose the background and champion for each side below. You can adjust the opacity and size, as well as move the champion's positions with your mouse. When you're finished, press the 'Download Wallpaper' button down below and you'll have your wallpaper!</label>
-        <input style="display:none" id="borderFile" type="file" accept="image/*">
         <div style="display:none" class="thumbs" id="borderPresets"></div>
 
         <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,.04)">
@@ -24,13 +23,9 @@
         <div class="side-title">Left Panel</div>
         <label>Background</label>
         <div class="thumbs" id="bgLeftPresets"></div>
-        <label style="display:none">Subir fondo</label>
-        <input style="display:none" id="bgLeftFile" type="file" accept="image/*">
 
         <label style="margin-top:8px">Champion</label>
         <div class="thumbs" id="logoLeftPresets"></div>
-        <label style="display:none">Subir logo</label>
-        <input style="display:none" id="logoLeftFile" type="file" accept="image/*">
 
         <div class="row">
           <label style="min-width:90px">Opacity</label>
@@ -42,24 +37,15 @@
           <input id="leftScale" type="range" min="10" max="300" value="87">
           <span id="leftScaleVal">87%</span>
         </div>
-        <div class="row" style="display:none">
-          <label style="min-width:90px">Rotación</label>
-          <input id="leftRotation" type="range" min="-180" max="180" value="0">
-          <span id="leftRotationVal">0°</span>
-        </div>
 
         <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,.04)">
 
         <div class="side-title">Right Panel</div>
         <label>Background</label>
         <div class="thumbs" id="bgRightPresets"></div>
-        <label style="display:none">Subir fondo</label>
-        <input style="display:none" id="bgRightFile" type="file" accept="image/*">
 
         <label style="margin-top:8px">Champion</label>
         <div class="thumbs" id="logoRightPresets"></div>
-        <label style="display:none">Subir logo</label>
-        <input style="display:none" id="logoRightFile" type="file" accept="image/*">
 
         <div class="row">
           <label style="min-width:90px">Opacity</label>
@@ -71,15 +57,10 @@
           <input id="rightScale" type="range" min="10" max="300" value="87">
           <span id="rightScaleVal">87%</span>
         </div>
-        <div class="row" style="display:none">
-          <label style="min-width:90px">Rotación</label>
-          <input id="rightRotation" type="range" min="-180" max="180" value="0">
-          <span id="rightRotationVal">0°</span>
-        </div>
 
         <div class="row" style="margin-top:12px">
-          <button style="display:none" id="resetBtn" class="ghost">Resetar logos</button>
           <button id="downloadBtn">Download Wallpaper</button>
+          <button id="resetBtn" class="ghost">Reset Positions</button>
         </div>
 
         <footer>All trademark and image rights belong to Riot Games. Images taken from the 2XKO Streaming Kit. Not affiliated with or sponsored by Riot Games.</footer>
@@ -92,12 +73,13 @@
       </div>
       <div style="display:none;gap:12px;align-items:center">
         <div class="panel" style="flex:1;padding:12px">
+          
           <strong>Preview info</strong>
           <div id="info" style="margin-top:8px;font-size:13px;color:#bcd">Cargando presets...</div>
         </div>
         <div class="panel" style="width:260px;padding:12px">
           <strong>Export</strong>
-          <p style="font-size:13px;color:#bcd">Descarga en PNG 1920×1080</p>
+          <p style="font-size:13px;color:#bcd">Download PNG 1920×1080</p>
         </div>
       </div>
     </div>
